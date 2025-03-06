@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 export default function AddUserPage() {
     const [name, setName] = useState("");
@@ -34,8 +35,16 @@ export default function AddUserPage() {
         users.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
 
-        alert("User Added Successfully!");
-        router.push("/users"); // Redirect to user list
+        // Show success toast
+        toast.success("User Added Successfully!", {
+            duration: 3000, // Toast duration
+            position: "top-right",
+        });
+
+        // Redirect after a short delay
+        setTimeout(() => {
+            router.push("/users");
+        }, 1000);
     };
 
     return (

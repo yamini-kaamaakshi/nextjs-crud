@@ -13,9 +13,13 @@ export default function UsersPage() {
     }, []);
 
     const handleDelete = (id) => {
-        const updatedUsers = users.filter(user => user.id !== id);
-        setUsers(updatedUsers);
-        localStorage.setItem("users", JSON.stringify(updatedUsers));
+        const isConfirmed = window.confirm("Are you sure you want to delete this user?");
+
+        if (isConfirmed) {
+            const updatedUsers = users.filter(user => user.id !== id);
+            setUsers(updatedUsers);
+            localStorage.setItem("users", JSON.stringify(updatedUsers));
+        }
     };
 
     return (
